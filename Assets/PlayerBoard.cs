@@ -1,4 +1,5 @@
 using Fusion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,5 +40,10 @@ public class PlayerBoard : MonoBehaviour
     public void AddCard(Card card) 
     {
         
+    }
+
+    internal void PlayCard(ESeed seed, int number)
+    {
+        throw new NotImplementedException();
     }
 }

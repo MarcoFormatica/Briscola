@@ -1,4 +1,5 @@
 using Fusion;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,20 @@ public enum ESeed
     Coppe,
     Denari
 }
+
+[Serializable]
+public class SerializableCard
+{
+    public ESeed seed;
+    public int number;
+
+    public SerializableCard(ESeed seed, int number)
+    {
+        this.seed = seed;
+        this.number = number;
+    }
+}
+
 public class Card : NetworkBehaviour
 {
     public MeshRenderer meshRendererFront;

@@ -71,7 +71,7 @@ public class Player : NetworkBehaviour
                     Card card = raycastHit.collider.GetComponentInParent<Card>();
                     if (card != null) 
                     {
-                        
+                        FindObjectOfType<BriscolaManager>().RPC_PlayCard(card.Seed,card.Number,PlayerType);
                     }
                 }
             }

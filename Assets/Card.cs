@@ -1,3 +1,4 @@
+using Fusion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,14 @@ public enum ESeed
 public class Card : MonoBehaviour
 {
 
+    [Networked] public ESeed Seed { get; set; }
+    [Networked] public int Number { get; set; }
+
+
+    public void RefreshCardRender()
+    {
+
+    }
 
     public int GetPoints()
     {

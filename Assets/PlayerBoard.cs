@@ -46,4 +46,9 @@ public class PlayerBoard : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+    internal void TakeAllCardsFromTheTable()
+    {
+        throw new NotImplementedException();
+    }
 }

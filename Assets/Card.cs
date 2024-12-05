@@ -46,18 +46,7 @@ public class Card : NetworkBehaviour
         GetComponentInChildren<TextMeshPro>().text = Number.ToString();
     }
 
-    public int GetPoints()
-    {
 
-        return 0;
-
-    }
-
-    public int GetPower()
-    {
-
-        return 0;
-    }
 
     private void Awake()
     {

@@ -10,7 +10,7 @@ public enum ESeed
     Coppe,
     Denari
 }
-public class Card : MonoBehaviour
+public class Card : NetworkBehaviour
 {
 
     [Networked] public ESeed Seed { get; set; }

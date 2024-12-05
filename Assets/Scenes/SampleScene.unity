@@ -250,6 +250,8 @@ GameObject:
   m_Component:
   - component: {fileID: 598263242}
   - component: {fileID: 598263241}
+  - component: {fileID: 598263244}
+  - component: {fileID: 598263243}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -269,6 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0718557205a5f3d47b930e353e0eedf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Seed: 0
+  _Number: 0
 --- !u!4 &598263242
 Transform:
   m_ObjectHideFlags: 0
@@ -287,6 +291,41 @@ Transform:
   - {fileID: 632173967}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &598263243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598263240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 0
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
+--- !u!114 &598263244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598263240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1316215261
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 598263241}
+  - {fileID: 598263243}
 --- !u!1 &632173966
 GameObject:
   m_ObjectHideFlags: 0

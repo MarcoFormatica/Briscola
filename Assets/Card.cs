@@ -5,6 +5,7 @@ using UnityEngine;
 
 public enum ESeed
 {
+    None,
     Bastoni,
     Spade,
     Coppe,

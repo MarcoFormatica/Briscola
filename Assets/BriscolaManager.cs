@@ -190,16 +190,6 @@ public class BriscolaManager : NetworkBehaviour
         return secondCard.seed == briscola.seed;
     }
 
-    public int GetPoints(SerializableCard serializableCard)
-    {
-        if (serializableCard.number == 1) { return 11; }
-        if (serializableCard.number == 3) { return 10; }
-        if (serializableCard.number == 8) { return 2; }
-        if (serializableCard.number == 9) { return 3; }
-        if (serializableCard.number == 10) { return 4; }
-
-        return 0;
-    }
 
     public int GetPower(SerializableCard serializableCard)
     {

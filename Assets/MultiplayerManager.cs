@@ -29,7 +29,7 @@ public class MultiplayerManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsSharedModeMasterClient) 
         {
-            // Inizializza partita
+           
         }
 
         // Inizializza giocatore

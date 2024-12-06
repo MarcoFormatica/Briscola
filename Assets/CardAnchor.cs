@@ -17,9 +17,9 @@ public class CardAnchor : MonoBehaviour
 
         card.transform.localPosition = Vector3.zero;    
         card.transform.localRotation = Quaternion.identity;
-        card.GetComponent<NetworkTransform>().Teleport(transform.position, transform.rotation);
-        card.transform.localPosition = Vector3.zero;
-        card.transform.localRotation = Quaternion.identity;
+      //  card.GetComponent<NetworkTransform>().Teleport(transform.position, transform.rotation);
+      //  card.transform.localPosition = Vector3.zero;
+     //   card.transform.localRotation = Quaternion.identity;
     }
 
     internal Card GetCard()

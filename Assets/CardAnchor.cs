@@ -1,3 +1,4 @@
+using Fusion;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ public class CardAnchor : MonoBehaviour
     public void PlaceCard(Card card)
     {
         card.gameObject.transform.parent = transform;
+
         card.transform.localPosition = Vector3.zero;    
+        card.transform.localRotation = Quaternion.identity;
+        card.GetComponent<NetworkTransform>().Teleport(transform.position, transform.rotation);
+        card.transform.localPosition = Vector3.zero;
         card.transform.localRotation = Quaternion.identity;
     }
 

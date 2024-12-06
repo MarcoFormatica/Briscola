@@ -147,7 +147,7 @@ public class BriscolaManager : NetworkBehaviour
     {
         turnOrder = GetPlayerTypeList();
 
-        while(turnOrder.First() != turnWinner)
+        while (turnOrder.First() != turnWinner)
         {
             EPlayerType first = turnOrder.First();
             turnOrder.Remove(first);
@@ -156,7 +156,7 @@ public class BriscolaManager : NetworkBehaviour
 
         turnOrderBackup = new List<EPlayerType>(turnOrder);
 
-       // turnOrder.ForEach(p => GetPlayerBoard(p).AddCard(DrawCard(deck)));
+        // turnOrder.ForEach(p => GetPlayerBoard(p).AddCard(DrawCard(deck)));
 
         foreach (EPlayerType playerType in turnOrder)
         {
@@ -192,15 +192,20 @@ public class BriscolaManager : NetworkBehaviour
 
     public int GetPoints(SerializableCard serializableCard)
     {
+        if (serializableCard.number == 1) { return 11; }
+        if (serializableCard.number == 3) { return 10; }
+        if (serializableCard.number == 8) { return 2; }
+        if (serializableCard.number == 9) { return 3; }
+        if (serializableCard.number == 10) { return 4; }
 
         return 0;
-
     }
 
     public int GetPower(SerializableCard serializableCard)
     {
-
-        return 0;
+       if(serializableCard.number == 1) { return 12; }
+       if(serializableCard.number == 3) { return 11; }
+        return serializableCard.number;
     }
 
     private SerializableCard GetLastPlayedCard(EPlayerType player)
@@ -208,13 +213,13 @@ public class BriscolaManager : NetworkBehaviour
         return new SerializableCard(GetPlayerBoard(player).LastCardPlayedSeed, GetPlayerBoard(player).LastCardPlayedNumber);
     }
 
-    private PlayerBoard GetPlayerBoard(EPlayerType player)
+    private PlayerBoard GetPlayerBoard(EPlayerType playerType)
     {
-        throw new NotImplementedException();
+        return new List<PlayerBoard>(FindObjectsOfType<PlayerBoard>()).Find(x => x.PlayerOwner == playerType);
     }
 
     private bool PlayerHasCard(EPlayerType player, ESeed seed, int number)
     {
-        throw new NotImplementedException();
+        return FindObjectsOfType<Card>().ToList().Exists(c => c.Number == number && c.Seed == seed && c.CardOwner == player);
     }
 }

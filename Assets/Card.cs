@@ -30,9 +30,15 @@ public class Card : NetworkBehaviour
 {
     public MeshRenderer meshRendererFront;
     public List<Material> materials;
-    [Networked] public ESeed Seed { get; set; }
-    [Networked] public int Number { get; set; }
 
+    [Networked, OnChangedRender(nameof(RefreshCardRender))] public ESeed Seed { get; set; }
+    [Networked, OnChangedRender(nameof(RefreshCardRender))] public int Number { get; set; }
+    [Networked, OnChangedRender(nameof(SetCardVisible))] public EPlayerType CardOwner { get; set; }
+
+    public void SetCardVisible()
+    {
+      //  throw new NotImplementedException();
+    }
 
     public void RefreshCardRender()
     {

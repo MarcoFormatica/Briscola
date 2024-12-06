@@ -39,7 +39,7 @@ public class PlayerBoard : MonoBehaviour
 
     public void AddCard(Card card) 
     {
-        
+        card.CardOwner = PlayerOwner;
     }
 
     internal void PlayCard(ESeed seed, int number)

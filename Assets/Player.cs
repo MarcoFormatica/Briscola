@@ -2,6 +2,7 @@ using Fusion;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -55,6 +56,9 @@ public class Player : NetworkBehaviour
 
         PlayerType = types.Find( t => (t!=EPlayerType.None) && !playerList.Exists(p=>p.PlayerType == t));
 
+        transform.parent = FindObjectsOfType<PlayerBoard>().ToList().Find(x => x.PlayerOwner == PlayerType).GetComponentInChildren<PlayerAnchor>().transform;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
     }
 
 

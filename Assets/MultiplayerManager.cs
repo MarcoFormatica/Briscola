@@ -29,10 +29,10 @@ public class MultiplayerManager : MonoBehaviour, INetworkRunnerCallbacks
     {
         if (runner.IsSharedModeMasterClient) 
         {
-           
+           runner.Spawn(roomManagerPrefab);
         }
+        runner.Spawn(playerPrefab);
 
-        // Inizializza giocatore
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)

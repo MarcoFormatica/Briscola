@@ -13,7 +13,9 @@ public class BriscolaManager : NetworkBehaviour
     public SerializableCard briscola;
     public List<EPlayerType> turnOrder;
     public List<EPlayerType> turnOrderBackup;
-
+    public NetworkObject briscolaNO;
+    public CardAnchor briscolaCardAnchor;
+    public NetworkObject deckPreview;
 
     public override void Spawned()
     {
@@ -53,6 +55,10 @@ public class BriscolaManager : NetworkBehaviour
             NetworkObject playerBoard = Runner.Spawn(playerBoardPrefab);
             playerBoard.GetComponent<PlayerBoard>().PlayerOwner = type;
 
+            playerBoard.transform.parent = FindObjectsOfType<PlayerBoardSpawnPoint>().ToList().Find(x => x.playerType == type).transform;
+            playerBoard.transform.localPosition = Vector3.zero;
+            playerBoard.transform.localRotation = Quaternion.identity;
+
             for (int i = 1; i <= 3; i++)
             {
                 playerBoard.GetComponent<PlayerBoard>().AddCard(DrawCard(deck));
@@ -63,7 +69,8 @@ public class BriscolaManager : NetworkBehaviour
     private void ExtractBriscola()
     {
         briscola = deck[deck.Count - 1];
-        NetworkObject briscolaNO = SpawnCard(briscola);
+        briscolaNO = SpawnCard(briscola);
+        briscolaCardAnchor.PlaceCard(briscolaNO.GetComponent<Card>());
 
     }
 
@@ -91,10 +98,18 @@ public class BriscolaManager : NetworkBehaviour
 
     private NetworkObject SpawnCard(SerializableCard serializableCard)
     {
-        NetworkObject spawnedCard = Runner.Spawn(cardPrefab);
-        spawnedCard.GetComponent<Card>().Seed = serializableCard.seed;
-        spawnedCard.GetComponent<Card>().Number = serializableCard.number;
-        return spawnedCard;
+        if (deck.Count == 0)
+        {
+            Runner.Despawn(deckPreview);
+            return briscolaNO;
+        }
+        else
+        {
+            NetworkObject spawnedCard = Runner.Spawn(cardPrefab);
+            spawnedCard.GetComponent<Card>().Seed = serializableCard.seed;
+            spawnedCard.GetComponent<Card>().Number = serializableCard.number;
+            return spawnedCard;
+        }
     }
 
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]

@@ -161,6 +161,7 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects:
   - {fileID: 1827697112649644837}
+  - {fileID: 6359687167849588184}
   - {fileID: 8483458215769071927}
   - {fileID: 28970331658779483}
   - {fileID: 6412299907816915899}
@@ -356,6 +357,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6172456292880303560}
   - component: {fileID: 8218530002322706748}
+  - component: {fileID: 7092312519108384471}
+  - component: {fileID: 6359687167849588184}
   m_Layer: 0
   m_Name: CardAnchorBriscola
   m_TagString: Untagged
@@ -390,6 +393,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9d2d27053fde3448db6110e2b9bdaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7092312519108384471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292013980004652980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncScale: 0
+  SyncParent: 1
+  _autoAOIOverride: 1
+  DisableSharedModeInterpolation: 1
+--- !u!114 &6359687167849588184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292013980004652980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2221180336
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 7092312519108384471}
 --- !u!1 &9094633485898419752
 GameObject:
   m_ObjectHideFlags: 0

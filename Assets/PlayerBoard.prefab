@@ -98,7 +98,7 @@ MonoBehaviour:
   _LastCardPlayedNumber: 0
   _LastCardPlayedSeed: 0
   hand: {fileID: 7828836420817257894}
-  playedCardAnchor: {fileID: 0}
+  playedCardAnchor: {fileID: 4046984771300563605}
 --- !u!114 &4570112045753625757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5897406226360189471}
-  - component: {fileID: 3030377104879133704}
   - component: {fileID: 4046984771300563605}
   m_Layer: 0
   m_Name: PlayedCardAnchor
@@ -255,18 +254,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 237920109682418427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3030377104879133704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4674456249968003507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d9d2d27053fde3448db6110e2b9bdaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4046984771300563605
 MonoBehaviour:
   m_ObjectHideFlags: 0

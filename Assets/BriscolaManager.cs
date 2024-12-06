@@ -1,6 +1,5 @@
 using Fusion;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -101,11 +100,11 @@ public class BriscolaManager : NetworkBehaviour
     [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
     public void RPC_PlayCard(ESeed seed, int number, EPlayerType player)
     {
-        if(turnOrder.Count == 0) { return; }
+        if (turnOrder.Count == 0) { return; }
 
-        if (player == turnOrder[0]) 
+        if (player == turnOrder[0])
         {
-            if(PlayerHasCard(player, seed, number))
+            if (PlayerHasCard(player, seed, number))
             {
                 GetPlayerBoard(player).PlayCard(seed, number);
                 turnOrder.RemoveAt(0);
@@ -119,12 +118,13 @@ public class BriscolaManager : NetworkBehaviour
                         EPlayerType candidate = turnOrderBackup[i];
                         SerializableCard candidateCard = GetLastPlayedCard(candidate);
 
-                        if (!ConfrontCards(winnerCard, candidateCard)) 
+                        if (!ConfrontCards(winnerCard, candidateCard))
                         {
                             winnerCard = candidateCard;
                             turnWinner = candidate;
                         }
                     }
+
                     GetPlayerBoard(turnWinner).TakeAllCardsFromTheTable();
 
                     if (CheckLastTurn())
@@ -145,24 +145,46 @@ public class BriscolaManager : NetworkBehaviour
 
     private void SetupNewTurn(EPlayerType turnWinner)
     {
-        throw new NotImplementedException();
+        turnOrder = GetPlayerTypeList();
+
+        while(turnOrder.First() != turnWinner)
+        {
+            EPlayerType first = turnOrder.First();
+            turnOrder.Remove(first);
+            turnOrder.Add(first);
+        }
+
+        turnOrderBackup = new List<EPlayerType>(turnOrder);
+
+       // turnOrder.ForEach(p => GetPlayerBoard(p).AddCard(DrawCard(deck)));
+
+        foreach (EPlayerType playerType in turnOrder)
+        {
+            GetPlayerBoard(playerType).AddCard(DrawCard(deck));
+        }
+
     }
 
     private void DeclareWinner()
     {
-        throw new NotImplementedException();
+        List<PlayerBoard> leaderBoard = new List<PlayerBoard>(FindObjectsOfType<PlayerBoard>()).OrderBy(p => p.Points).Reverse().ToList();
+
+        Debug.Log("LeaderBoard:");
+        leaderBoard.ForEach(p => Debug.Log(p.PlayerOwner.ToString() + " - Points: " + p.Points));
+
+
     }
 
     private bool CheckLastTurn()
     {
-        throw new NotImplementedException();
+        return deck.Count == 0 && GetPlayerBoard(EPlayerType.Red).GetCardsInHand().Count == 0;
     }
 
     private bool ConfrontCards(SerializableCard firstCard, SerializableCard secondCard)
     {
-        if(firstCard.seed == secondCard.seed)
+        if (firstCard.seed == secondCard.seed)
         {
-            return GetPower(firstCard)>GetPower(secondCard);
+            return GetPower(firstCard) > GetPower(secondCard);
         }
 
         return secondCard.seed == briscola.seed;

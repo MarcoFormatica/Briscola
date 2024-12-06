@@ -51,4 +51,9 @@ public class PlayerBoard : MonoBehaviour
     {
         throw new NotImplementedException();
     }
+
+    public List<Card> GetCardsInHand()
+    {
+        throw new NotImplementedException();
+    }
 }

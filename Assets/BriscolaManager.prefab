@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3343900262785240657}
   - component: {fileID: 5491897614879098693}
+  - component: {fileID: 7026056586086383477}
   m_Layer: 0
   m_Name: PlayerBoardYellow
   m_TagString: Untagged
@@ -45,6 +46,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 4
+--- !u!114 &7026056586086383477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3054329149066747119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1921371757
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &3966261274182106722
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +143,10 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects:
   - {fileID: 1827697112649644837}
+  - {fileID: 8483458215769071927}
+  - {fileID: 28970331658779483}
+  - {fileID: 6412299907816915899}
+  - {fileID: 7026056586086383477}
   NetworkedBehaviours:
   - {fileID: 3619910505475033447}
   - {fileID: 6324689172454711665}
@@ -154,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6783341725241367680}
   - component: {fileID: 349303405489041943}
+  - component: {fileID: 28970331658779483}
   m_Layer: 0
   m_Name: PlayerBoardGreen
   m_TagString: Untagged
@@ -189,6 +212,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 2
+--- !u!114 &28970331658779483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186001405642042922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 3974992564
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &5056717051298640725
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6266663516784123543}
   - component: {fileID: 168891210805646572}
+  - component: {fileID: 8483458215769071927}
   m_Layer: 0
   m_Name: PlayerBoardRed
   m_TagString: Untagged
@@ -234,6 +275,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 1
+--- !u!114 &8483458215769071927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056717051298640725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 1611575459
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours: []
 --- !u!1 &8292013980004652980
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,6 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8728429990709398381}
   - component: {fileID: 5807791365661247551}
+  - component: {fileID: 6412299907816915899}
   m_Layer: 0
   m_Name: PlayerBoardBlue
   m_TagString: Untagged
@@ -446,3 +505,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 3
+--- !u!114 &6412299907816915899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173702209936209467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SortKey: 2001742603
+  ObjectInterest: 1
+  Flags: 1
+  NestedObjects: []
+  NetworkedBehaviours: []

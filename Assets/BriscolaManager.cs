@@ -59,6 +59,8 @@ public class BriscolaManager : NetworkBehaviour
             playerBoard.transform.localPosition = Vector3.zero;
             playerBoard.transform.localRotation = Quaternion.identity;
 
+            playerBoard.GetComponent<NetworkTransform>().Teleport(transform.position, transform.rotation);
+
             for (int i = 1; i <= 3; i++)
             {
                 playerBoard.GetComponent<PlayerBoard>().AddCard(DrawCard(deck));

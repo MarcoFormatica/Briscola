@@ -30,6 +30,7 @@ public class SerializableCard
 public class Card : NetworkBehaviour
 {
     public MeshRenderer meshRendererFront;
+    public MeshRenderer meshRendererBack;
     public List<Material> materials;
 
     [Networked, OnChangedRender(nameof(RefreshCardRender))] public ESeed Seed { get; set; }
@@ -54,11 +55,17 @@ public class Card : NetworkBehaviour
 
     public void RefreshCardVisibility()
     {
+        Debug.Log(nameof(RefreshCardVisibility));
         EPlayerType localPlayerType = FindObjectOfType<MultiplayerManager>().localPlayer.PlayerType;
         EPlayerType cardOwnerType = GetOwner();
-        if(IsPlayed() || localPlayerType == cardOwnerType || cardOwnerType == EPlayerType.None)
+
+
+        Debug.Log("Decide if card is visible= LocalPlayerType:"+localPlayerType+" CardOwnerType:"+cardOwnerType+ " IsPlayed()"+ IsPlayed());
+
+        if (IsPlayed() || localPlayerType == cardOwnerType || cardOwnerType == EPlayerType.None)
         {
-            meshRendererFront.gameObject.SetActive(false);
+            Debug.Log("Set card visible");
+            meshRendererBack.gameObject.SetActive(false);
         }
     }
 
@@ -84,6 +91,6 @@ public class Card : NetworkBehaviour
     {
         base.Spawned();
         RefreshCardRender();
-        Invoke(nameof(RefreshCardVisibility), 0.2f);
+        Invoke(nameof(RefreshCardVisibility), 1f);
     }
 }

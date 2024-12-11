@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRendererFront: {fileID: 1333136453693809283}
+  meshRendererBack: {fileID: 4450404503906442618}
   materials:
   - {fileID: 2100000, guid: f369a052a02d1344c9d49ded3f85c657, type: 2}
   - {fileID: 2100000, guid: cf0536a90cc23d64180c1997393261e2, type: 2}
@@ -57,7 +58,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 0bb8393179178444b84b014dac8b0bab, type: 2}
   _Seed: 0
   _Number: 0
-  _CardOwner: 0
 --- !u!114 &3904959380103092448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8645629926092663210
 Transform:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@ public class PlayerBoard : NetworkBehaviour
     {
         Card card = GetCard(seed, number);
         playedCardAnchor.PlaceCard(card);
+        card.RPC_ShowCard();
     }
 
     private Card GetCard(ESeed seed, int number)

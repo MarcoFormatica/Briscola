@@ -65,8 +65,13 @@ public class Card : NetworkBehaviour
         if (IsPlayed() || localPlayerType == cardOwnerType || cardOwnerType == EPlayerType.None)
         {
             Debug.Log("Set card visible");
-            meshRendererBack.gameObject.SetActive(false);
+            ShowCard();
         }
+    }
+
+    private void ShowCard()
+    {
+        meshRendererBack.gameObject.SetActive(false);
     }
 
     public void RefreshCardRender()
@@ -91,6 +96,18 @@ public class Card : NetworkBehaviour
     {
         base.Spawned();
         RefreshCardRender();
+        OneSecondDelayedRefreshCardVisibility();
+    }
+
+    [Rpc(RpcSources.All, RpcTargets.All)]
+    public void RPC_ShowCard()
+    {
+        ShowCard();
+    }
+
+    private void OneSecondDelayedRefreshCardVisibility()
+    {
         Invoke(nameof(RefreshCardVisibility), 1f);
     }
+
 }

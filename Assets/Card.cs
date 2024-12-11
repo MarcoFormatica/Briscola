@@ -1,6 +1,7 @@
 using Fusion;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -33,11 +34,32 @@ public class Card : NetworkBehaviour
 
     [Networked, OnChangedRender(nameof(RefreshCardRender))] public ESeed Seed { get; set; }
     [Networked, OnChangedRender(nameof(RefreshCardRender))] public int Number { get; set; }
-    [Networked, OnChangedRender(nameof(SetCardVisible))] public EPlayerType CardOwner { get; set; }
 
-    public void SetCardVisible()
+    GameObject grabbedObject;
+
+    public EPlayerType GetOwner() 
     {
-      //  throw new NotImplementedException();
+        PlayerBoard playerBoard = gameObject.GetComponentInParent<PlayerBoard>();
+        if (playerBoard == null)
+        {
+            return EPlayerType.None;
+        }
+        return playerBoard.PlayerOwner;
+    }
+
+    public bool IsPlayed()
+    {
+        return GetComponentInParent<PlayedCardSlot>() != null;
+    }
+
+    public void RefreshCardVisibility()
+    {
+        EPlayerType localPlayerType = FindObjectOfType<MultiplayerManager>().localPlayer.PlayerType;
+        EPlayerType cardOwnerType = GetOwner();
+        if(IsPlayed() || localPlayerType == cardOwnerType || cardOwnerType == EPlayerType.None)
+        {
+            meshRendererFront.gameObject.SetActive(false);
+        }
     }
 
     public void RefreshCardRender()
@@ -62,5 +84,6 @@ public class Card : NetworkBehaviour
     {
         base.Spawned();
         RefreshCardRender();
+        Invoke(nameof(RefreshCardVisibility), 0.2f);
     }
 }

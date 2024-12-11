@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 4046984771300563605}
   - component: {fileID: 301241182008026246}
   - component: {fileID: 6606706237752313792}
+  - component: {fileID: 1401807756705899891}
   m_Layer: 0
   m_Name: PlayedCardAnchor
   m_TagString: Untagged
@@ -416,6 +417,18 @@ MonoBehaviour:
   SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 1
+--- !u!114 &1401807756705899891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674456249968003507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37c49752bcc7a64eb1c04f88262d52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5279654086656242588
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +440,7 @@ GameObject:
   - component: {fileID: 7828836420817257894}
   - component: {fileID: 3955953754003436577}
   - component: {fileID: 8801860057547295102}
+  - component: {fileID: 2438292906617486529}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -489,6 +503,18 @@ MonoBehaviour:
   SyncParent: 1
   _autoAOIOverride: 1
   DisableSharedModeInterpolation: 1
+--- !u!114 &2438292906617486529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279654086656242588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3fac91ea56dad4c83eabc8b1c5bb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5904951919033745125
 GameObject:
   m_ObjectHideFlags: 0

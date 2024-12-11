@@ -11,6 +11,7 @@ public class MultiplayerManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public NetworkObject roomManagerPrefab;
     public NetworkObject playerPrefab;
+    public Player localPlayer;
 
     public void Awake()
     {
@@ -31,8 +32,8 @@ public class MultiplayerManager : MonoBehaviour, INetworkRunnerCallbacks
         {
            runner.Spawn(roomManagerPrefab);
         }
-        runner.Spawn(playerPrefab);
-
+       NetworkObject playerNO = runner.Spawn(playerPrefab);
+       localPlayer = playerNO.GetComponent<Player>();
     }
 
     public void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)

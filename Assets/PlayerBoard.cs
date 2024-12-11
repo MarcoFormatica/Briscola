@@ -42,7 +42,6 @@ public class PlayerBoard : NetworkBehaviour
 
     public void AddCard(Card card) 
     {
-        card.CardOwner = PlayerOwner;
         hand.GetComponentsInChildren<CardAnchor>().ToList().Find(x=>x.IsOccupied()==false).PlaceCard(card);
     }
 
@@ -50,8 +49,6 @@ public class PlayerBoard : NetworkBehaviour
     {
         Card card = GetCard(seed, number);
         playedCardAnchor.PlaceCard(card);
-        LastCardPlayedNumber = number;
-        LastCardPlayedSeed = seed;
     }
 
     private Card GetCard(ESeed seed, int number)
@@ -87,4 +84,9 @@ public class PlayerBoard : NetworkBehaviour
         return 0;
     }
 
+    internal SerializableCard GetLastPlayedCard()
+    {
+        Card lastPlayedCard = GetComponentInChildren<PlayedCardSlot>().gameObject.GetComponentInChildren<Card>();
+        return new SerializableCard(lastPlayedCard.Seed, lastPlayedCard.Number);
+    }
 }

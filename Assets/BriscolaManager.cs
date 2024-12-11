@@ -220,7 +220,8 @@ public class BriscolaManager : NetworkBehaviour
 
     private SerializableCard GetLastPlayedCard(EPlayerType player)
     {
-        return new SerializableCard(GetPlayerBoard(player).LastCardPlayedSeed, GetPlayerBoard(player).LastCardPlayedNumber);
+        return GetPlayerBoard(player).GetLastPlayedCard();
+       // return new SerializableCard(.LastCardPlayedSeed, GetPlayerBoard(player).LastCardPlayedNumber);
     }
 
     private PlayerBoard GetPlayerBoard(EPlayerType playerType)
@@ -230,6 +231,6 @@ public class BriscolaManager : NetworkBehaviour
 
     private bool PlayerHasCard(EPlayerType player, ESeed seed, int number)
     {
-        return FindObjectsOfType<Card>().ToList().Exists(c => c.Number == number && c.Seed == seed && c.CardOwner == player);
+        return FindObjectsOfType<Card>().ToList().Exists(c => c.Number == number && c.Seed == seed && c.GetOwner() == player);
     }
 }

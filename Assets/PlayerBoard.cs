@@ -54,7 +54,9 @@ public class PlayerBoard : NetworkBehaviour
         foreach (PlayerBoard playerBoard in FindObjectsOfType<PlayerBoard>()) 
         {
             Card playedCard = playerBoard.playedCardAnchor.GetCard();
+
             pointsToGain = pointsToGain + GetCardPoints(playedCard.Number);
+
             Runner.Despawn(playedCard.GetComponent<NetworkObject>());
         }
         Points = Points + pointsToGain;
@@ -76,9 +78,14 @@ public class PlayerBoard : NetworkBehaviour
         return 0;
     }
 
-    internal SerializableCard GetLastPlayedCard()
+    internal SerializableCard GetLastSerializablePlayedCard()
+    {
+        Card lastPlayedCard = GetLastPlayedCard();
+        return new SerializableCard(lastPlayedCard.Seed, lastPlayedCard.Number);
+    }
+    internal Card GetLastPlayedCard()
     {
         Card lastPlayedCard = GetComponentInChildren<PlayedCardSlot>().gameObject.GetComponentInChildren<Card>();
-        return new SerializableCard(lastPlayedCard.Seed, lastPlayedCard.Number);
+        return lastPlayedCard;
     }
 }

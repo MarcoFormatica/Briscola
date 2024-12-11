@@ -1,5 +1,6 @@
 using Fusion;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -153,6 +154,15 @@ public class BriscolaManager : NetworkBehaviour
                
                 if (turnOrder.Count == 0)
                 {
+                    EPlayerType turnWinner = GetTurnWinner();
+                    Vector3 winnerPlayerPosition = GetPlayerBoard(turnWinner).GetComponent<PlayerAnchor>().transform.position;
+                    foreach(PlayerBoard playerBoard in FindObjectsOfType<PlayerBoard>())
+                    {
+                        Card card = playerBoard.GetLastPlayedCard();
+                        StartCoroutine(GraduallyMoveCard(card, winnerPlayerPosition));
+                    }
+
+
                     Invoke(nameof(EndOfTheRound), 2);
 
                 }
@@ -165,28 +175,23 @@ public class BriscolaManager : NetworkBehaviour
             }
         }
     }
+    IEnumerator GraduallyMoveCard(Card cardToMove, Vector3 destination)
+    {
+        Vector3 initialPosition = cardToMove.transform.position;
+        float totalTime = 2;
+        float passedTime = 0;
+        while (passedTime < totalTime)
+        {
+            passedTime += Time.deltaTime;
+            yield return null;
+            float ratio = passedTime / totalTime;
+            cardToMove.transform.position = Vector3.Lerp(initialPosition, destination, ratio);
+        }
+    }
 
     private void EndOfTheRound()
     {
-        EPlayerType turnWinner = turnOrderBackup[0];
-        SerializableCard winnerCard = GetLastPlayedCard(turnWinner);
-
-        for (int i = 1; i < 4; i++)
-        {
-            Debug.Log(turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
-            EPlayerType candidate = turnOrderBackup[i];
-            SerializableCard candidateCard = GetLastPlayedCard(candidate);
-
-            Debug.Log(candidate.ToString() + " is the candidate with " + candidateCard.number.ToString() + candidateCard.seed.ToString());
-            if (!ConfrontCards(winnerCard, candidateCard))
-            {
-                Debug.Log("Candidate won!");
-                winnerCard = candidateCard;
-                turnWinner = candidate;
-            }
-
-        }
-        Debug.Log("Final: " + turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
+        EPlayerType turnWinner = GetTurnWinner();
 
         GetPlayerBoard(turnWinner).TakeAllCardsFromTheTable();
 
@@ -198,6 +203,30 @@ public class BriscolaManager : NetworkBehaviour
         {
             SetupNewTurn(turnWinner);
         }
+    }
+
+    private EPlayerType GetTurnWinner()
+    {
+        EPlayerType turnWinner = turnOrderBackup[0];
+        SerializableCard winnerCard = GetLastPlayedSerializableCard(turnWinner);
+
+        for (int i = 1; i < 4; i++)
+        {
+            //     Debug.Log(turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
+            EPlayerType candidate = turnOrderBackup[i];
+            SerializableCard candidateCard = GetLastPlayedSerializableCard(candidate);
+
+            //     Debug.Log(candidate.ToString() + " is the candidate with " + candidateCard.number.ToString() + candidateCard.seed.ToString());
+            if (!ConfrontCards(winnerCard, candidateCard))
+            {
+                //     Debug.Log("Candidate won!");
+                winnerCard = candidateCard;
+                turnWinner = candidate;
+            }
+
+        }
+
+        return turnWinner;
     }
 
     private void SetupNewTurn(EPlayerType turnWinner)
@@ -256,11 +285,13 @@ public class BriscolaManager : NetworkBehaviour
         return serializableCard.number;
     }
 
-    private SerializableCard GetLastPlayedCard(EPlayerType player)
+    private SerializableCard GetLastPlayedSerializableCard(EPlayerType player)
     {
-        return GetPlayerBoard(player).GetLastPlayedCard();
+        return GetPlayerBoard(player).GetLastSerializablePlayedCard();
        // return new SerializableCard(.LastCardPlayedSeed, GetPlayerBoard(player).LastCardPlayedNumber);
     }
+
+    
 
     private PlayerBoard GetPlayerBoard(EPlayerType playerType)
     {

@@ -28,7 +28,7 @@ public class Player : NetworkBehaviour
 
 
 
-    private Color FromPlayerTypeToColor(EPlayerType playerType)
+    public static Color FromPlayerTypeToColor(EPlayerType playerType)
     {
         if(playerType == EPlayerType.Green) { return Color.green; } 
         if(playerType == EPlayerType.Blue) { return Color.blue; }

@@ -17,6 +17,14 @@ public class BriscolaManager : NetworkBehaviour
     public CardAnchor briscolaCardAnchor;
     public NetworkObject deckPreview;
 
+
+    [Networked, OnChangedRender(nameof(RefreshTurnPlayer))] public EPlayerType TurnPlayer { get; set; }
+
+    public void RefreshTurnPlayer()
+    {
+        FindObjectOfType<Table>().gameObject.GetComponent<MeshRenderer>().material.color = Player.FromPlayerTypeToColor(TurnPlayer);
+    }
+
     public override void Spawned()
     {
         base.Spawned();
@@ -78,7 +86,18 @@ public class BriscolaManager : NetworkBehaviour
         briscolaCardAnchor.PlaceCard(briscolaNO.GetComponent<Card>());
 
     }
-
+    public static void Shuffle(IList<SerializableCard> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = UnityEngine.Random.Range(0,n + 1);
+            SerializableCard value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
     private void CreateDeck()
     {
         deck = new List<SerializableCard>();
@@ -92,6 +111,8 @@ public class BriscolaManager : NetworkBehaviour
                 }
             }
         }
+
+        Shuffle(deck);
     }
 
     private Card DrawCard(List<SerializableCard> deck)

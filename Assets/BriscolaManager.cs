@@ -155,7 +155,7 @@ public class BriscolaManager : NetworkBehaviour
                 if (turnOrder.Count == 0)
                 {
                     EPlayerType turnWinner = GetTurnWinner();
-                    Vector3 winnerPlayerPosition = GetPlayerBoard(turnWinner).GetComponent<PlayerAnchor>().transform.position;
+                    Vector3 winnerPlayerPosition = GetPlayerBoard(turnWinner).GetComponentInChildren<PlayerAnchor>().transform.position;
                     foreach(PlayerBoard playerBoard in FindObjectsOfType<PlayerBoard>())
                     {
                         Card card = playerBoard.GetLastPlayedCard();

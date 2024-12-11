@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class PlayerBoard : NetworkBehaviour
@@ -14,22 +15,12 @@ public class PlayerBoard : NetworkBehaviour
     [Networked, OnChangedRender(nameof(OnPointsChanged))]
     public int Points { get; set; }
 
-    [Networked, OnChangedRender(nameof(OnLastCardPlayedNumberChanged))]
-    public int LastCardPlayedNumber { get; set; }
-
-    [Networked, OnChangedRender(nameof(OnLastCardPlayedSeedChanged))]
-    public ESeed LastCardPlayedSeed { get; set; }
 
     public Transform hand;
     public CardAnchor playedCardAnchor;
-    public void OnLastCardPlayedNumberChanged()
-    {
+    public TextMeshPro pointsTextMeshPro;
 
-    }
-    public void OnLastCardPlayedSeedChanged()
-    {
 
-    }
     public void OnPlayerOwnerChanged()
     {
 
@@ -37,7 +28,7 @@ public class PlayerBoard : NetworkBehaviour
 
     public void OnPointsChanged()
     {
-
+        pointsTextMeshPro.text = Points.ToString(); 
     }
 
     public void AddCard(Card card) 

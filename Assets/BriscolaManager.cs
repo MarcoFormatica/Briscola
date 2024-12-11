@@ -158,15 +158,20 @@ public class BriscolaManager : NetworkBehaviour
 
                     for (int i = 1; i < 4; i++)
                     {
+                        Debug.Log(turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
                         EPlayerType candidate = turnOrderBackup[i];
                         SerializableCard candidateCard = GetLastPlayedCard(candidate);
 
+                        Debug.Log(candidate.ToString() + " is the candidate with " + candidateCard.number.ToString() + candidateCard.seed.ToString());
                         if (!ConfrontCards(winnerCard, candidateCard))
                         {
+                            Debug.Log("Candidate won!");
                             winnerCard = candidateCard;
                             turnWinner = candidate;
                         }
+
                     }
+                    Debug.Log("Final: "+turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
 
                     GetPlayerBoard(turnWinner).TakeAllCardsFromTheTable();
 
@@ -235,7 +240,7 @@ public class BriscolaManager : NetworkBehaviour
             return GetPower(firstCard) > GetPower(secondCard);
         }
 
-        return secondCard.seed == briscola.seed;
+        return secondCard.seed != briscola.seed;
     }
 
 

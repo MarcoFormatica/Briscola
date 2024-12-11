@@ -156,10 +156,11 @@ public class BriscolaManager : NetworkBehaviour
                 {
                     EPlayerType turnWinner = GetTurnWinner();
                     Vector3 winnerPlayerPosition = GetPlayerBoard(turnWinner).GetComponentInChildren<PlayerAnchor>().transform.position;
+                    Quaternion winnerPlayerRotation = GetPlayerBoard(turnWinner).GetComponentInChildren<PlayerAnchor>().transform.rotation;
                     foreach(PlayerBoard playerBoard in FindObjectsOfType<PlayerBoard>())
                     {
                         Card card = playerBoard.GetLastPlayedCard();
-                        StartCoroutine(GraduallyMoveCard(card, winnerPlayerPosition));
+                        StartCoroutine(GraduallyMoveCard(card, winnerPlayerPosition, winnerPlayerRotation));
                     }
 
 
@@ -175,10 +176,11 @@ public class BriscolaManager : NetworkBehaviour
             }
         }
     }
-    IEnumerator GraduallyMoveCard(Card cardToMove, Vector3 destination)
+    IEnumerator GraduallyMoveCard(Card cardToMove, Vector3 destination, Quaternion rotationDestination)
     {
         Vector3 initialPosition = cardToMove.transform.position;
-        float totalTime = 2;
+        Quaternion initialRotation = cardToMove.transform.rotation;
+        float totalTime = 1;
         float passedTime = 0;
         while (passedTime < totalTime)
         {
@@ -186,6 +188,7 @@ public class BriscolaManager : NetworkBehaviour
             yield return null;
             float ratio = passedTime / totalTime;
             cardToMove.transform.position = Vector3.Lerp(initialPosition, destination, ratio);
+            cardToMove.transform.rotation = Quaternion.Slerp(initialRotation, rotationDestination, ratio);
         }
     }
 

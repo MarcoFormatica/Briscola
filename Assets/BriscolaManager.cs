@@ -153,36 +153,7 @@ public class BriscolaManager : NetworkBehaviour
                
                 if (turnOrder.Count == 0)
                 {
-                    EPlayerType turnWinner = turnOrderBackup[0];
-                    SerializableCard winnerCard = GetLastPlayedCard(turnWinner);
-
-                    for (int i = 1; i < 4; i++)
-                    {
-                        Debug.Log(turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
-                        EPlayerType candidate = turnOrderBackup[i];
-                        SerializableCard candidateCard = GetLastPlayedCard(candidate);
-
-                        Debug.Log(candidate.ToString() + " is the candidate with " + candidateCard.number.ToString() + candidateCard.seed.ToString());
-                        if (!ConfrontCards(winnerCard, candidateCard))
-                        {
-                            Debug.Log("Candidate won!");
-                            winnerCard = candidateCard;
-                            turnWinner = candidate;
-                        }
-
-                    }
-                    Debug.Log("Final: "+turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
-
-                    GetPlayerBoard(turnWinner).TakeAllCardsFromTheTable();
-
-                    if (CheckLastTurn())
-                    {
-                        DeclareWinner();
-                    }
-                    else
-                    {
-                        SetupNewTurn(turnWinner);
-                    }
+                    Invoke(nameof(EndOfTheRound), 2);
 
                 }
                 else
@@ -192,6 +163,40 @@ public class BriscolaManager : NetworkBehaviour
 
 
             }
+        }
+    }
+
+    private void EndOfTheRound()
+    {
+        EPlayerType turnWinner = turnOrderBackup[0];
+        SerializableCard winnerCard = GetLastPlayedCard(turnWinner);
+
+        for (int i = 1; i < 4; i++)
+        {
+            Debug.Log(turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
+            EPlayerType candidate = turnOrderBackup[i];
+            SerializableCard candidateCard = GetLastPlayedCard(candidate);
+
+            Debug.Log(candidate.ToString() + " is the candidate with " + candidateCard.number.ToString() + candidateCard.seed.ToString());
+            if (!ConfrontCards(winnerCard, candidateCard))
+            {
+                Debug.Log("Candidate won!");
+                winnerCard = candidateCard;
+                turnWinner = candidate;
+            }
+
+        }
+        Debug.Log("Final: " + turnWinner.ToString() + " is winning with " + winnerCard.number.ToString() + winnerCard.seed.ToString());
+
+        GetPlayerBoard(turnWinner).TakeAllCardsFromTheTable();
+
+        if (CheckLastTurn())
+        {
+            DeclareWinner();
+        }
+        else
+        {
+            SetupNewTurn(turnWinner);
         }
     }
 

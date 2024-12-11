@@ -49,6 +49,7 @@ public class BriscolaManager : NetworkBehaviour
     {
         turnOrder = GetPlayerTypeList();
         turnOrderBackup = new List<EPlayerType>(turnOrder);
+        TurnPlayer = turnOrder[0];
     }
 
     private static List<EPlayerType> GetPlayerTypeList()
@@ -149,6 +150,7 @@ public class BriscolaManager : NetworkBehaviour
             {
                 GetPlayerBoard(player).PlayCard(seed, number);
                 turnOrder.RemoveAt(0);
+               
                 if (turnOrder.Count == 0)
                 {
                     EPlayerType turnWinner = turnOrderBackup[0];
@@ -178,6 +180,10 @@ public class BriscolaManager : NetworkBehaviour
                     }
 
                 }
+                else
+                {
+                    TurnPlayer = turnOrder[0];
+                }
 
 
             }
@@ -196,6 +202,7 @@ public class BriscolaManager : NetworkBehaviour
         }
 
         turnOrderBackup = new List<EPlayerType>(turnOrder);
+        TurnPlayer = turnOrder[0];
 
         // turnOrder.ForEach(p => GetPlayerBoard(p).AddCard(DrawCard(deck)));
 
